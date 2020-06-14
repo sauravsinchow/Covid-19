@@ -5,8 +5,9 @@ var request = require("request");
 app.set("view engine","ejs");
 app.use(express.static("public"));
 
-
-
+app.get("/",(req,res)=>{
+  res.render("Home");
+})
 
 app.get("/Covid-19",(req,res)=>{
   request("https://api.covid19india.org/data.json",(error,response,body)=>{
@@ -27,6 +28,6 @@ app.get("/District-wise/:state",(req,res)=>{
 })
 
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
   console.log("server started");
 })
